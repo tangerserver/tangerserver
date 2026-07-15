@@ -407,7 +407,7 @@
         
         /* 進階指令展開框的綠色邊框 */
         .cmd-content.premium-active {
-            border-color: rgba(0, 255, 10 green, 0.3) !important;
+            border-color: rgba(0, 255, 102, 0.3) !important;
         }
 
         table { width: 100%; border-collapse: collapse; }
@@ -532,13 +532,10 @@
                         <span class="price-unit">NTD / 永久</span>
                     </div>
                     <ul class="feature-list">
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
- 
+                        <li class="feature-item"><span class="feature-icon">✓</span> 基礎防炸規則</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 台灣地震速報 (≥4級)</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 基礎工具與客服單</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 面板唯讀權限</li>
                     </ul>
                     <button class="price-btn">免費加入伺服器</button>
                 </div>
@@ -551,14 +548,12 @@
                         <span id="premium-unit" class="price-unit">NTD / 月</span>
                     </div>
                     <ul class="feature-list">
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>                         
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>                  
+                        <li class="feature-item"><span class="feature-icon">✓</span> 基礎版全部功能</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 進階自訂防炸規則</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 台日全球地震推送自訂</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 解鎖音樂與抽獎系統</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 面板完整管理權限</li>
+                        <li class="feature-item"><span class="feature-icon">💎</span> <b>進階廣播發送</b> (私訊發送公告)</li>
                     </ul>
                     <button class="price-btn solid">升級到進階版</button>
                 </div>
@@ -567,7 +562,7 @@
         
         <div id="about-tanger" class="section anchor-target">
             <h2>✨ 關於糖兒</h2>
-            <p>xxxxx</p>
+            <p>糖兒機器人是一款為 Discord 伺服器量身打造的全方位管理助手，致力於提供最穩定、流暢、安全的自動化管理與娛樂體驗，讓群組營運變得無比簡單。</p>
         </div>
 
         <div id="commands-list" class="section anchor-target">
@@ -641,6 +636,19 @@
 
             <div class="sub-section-title" style="color: #00FF66; margin-top: 3.5rem;">👑 進階版指令介紹</div>
             <p>點擊下方按鈕展開進階版專屬功能：</p>
+
+            <div class="accordion-item">
+                <button class="system-header premium-header" onclick="toggleAccordion(this, 'premium-broadcast-table')"><span>📢 進階廣播系統</span></button>
+                <div id="premium-broadcast-table" class="cmd-content">
+                    <table>
+                        <thead><tr><th style="width: 40%;" class="premium-th">指令</th><th style="width: 60%;" class="premium-th">功能與使用說明</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="cmd-code premium-code">/廣播 所有成員</span></td><td>直接對伺服器內的所有成員發送私人訊息公告（分批傳送）</td></tr>
+                            <tr><td><span class="cmd-code premium-code">/廣播 廣播管理員</span></td><td>單獨向伺服器內的所有管理員/幹部發送私訊通知，方便傳遞內部消息</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             <div class="accordion-item">
                 <button class="system-header premium-header" onclick="toggleAccordion(this, 'premium-music-table')"><span>✨ 進階語音與音質控制</span></button>
