@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>糖兒機器人</title>
     <style>
+        /* 全域樣式與深藍背景 */
         html {
             scroll-behavior: smooth;
+            /* 調整網頁基礎字型大小，讓所有元件與字體等比例縮小 20% */
             font-size: 80%; 
         }
         body {
@@ -18,11 +20,15 @@
             color: #E0F2FE;
             overflow-x: hidden;
             padding-top: 70px;
+            
+            /* 禁止使用者在網頁上反白選取文字 */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
+
+        /* 偽造的「中斷連線與網頁錯誤」全螢幕蓋板 */
         #error-overlay {
             display: none;
             position: fixed;
@@ -47,6 +53,8 @@
         }
         .error-title { font-size: 2rem; font-weight: bold; margin-bottom: 1rem; color: #ff3333; }
         .error-desc { color: #aaaaaa; margin-bottom: 2rem; }
+
+        /* 功能導覽選單 */
         .navbar {
             position: fixed;
             top: 0;
@@ -97,6 +105,7 @@
             width: 100%;
             left: 0;
         }
+
         header {
             background: linear-gradient(135deg, #0F172A, #1E3A8A);
             color: white;
@@ -117,6 +126,7 @@
             letter-spacing: 2px;
             color: #38BDF8;
         }
+
         .version-tag {
             display: inline-block;
             margin-top: 0.8rem;
@@ -130,6 +140,7 @@
             border-radius: 20px;
             box-shadow: 0 0 8px rgba(0, 245, 255, 0.2);
         }
+
         .container {
             max-width: 900px;
             margin: 2rem auto;
@@ -137,19 +148,23 @@
             position: relative;
             z-index: 10;
         }
+
         .anchor-target {
             scroll-margin-top: 90px;
         }
+
         @keyframes pulseBorder {
             0% { box-shadow: 0 0 12px rgba(56, 189, 248, 0.3); }
             50% { box-shadow: 0 0 25px rgba(56, 189, 248, 0.7); }
             100% { box-shadow: 0 0 12px rgba(56, 189, 248, 0.3); }
         }
+
         @keyframes pulseSection {
             0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 12px rgba(56, 189, 248, 0.1); }
             50% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 25px rgba(56, 189, 248, 0.5); }
             100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 12px rgba(56, 189, 248, 0.1); }
         }
+
         .section {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
@@ -166,6 +181,7 @@
             border-color: rgba(56, 189, 248, 0.6);
             animation: pulseSection 2s infinite ease-in-out;
         }
+
         h2 {
             color: #38BDF8;
             border-bottom: 2px solid #38BDF8;
@@ -173,6 +189,17 @@
             margin-bottom: 1.5rem;
             margin-top: 0;
         }
+
+        .sub-section-title {
+            color: #00F5FF;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .status-header-area {
             display: flex;
             justify-content: space-between;
@@ -207,6 +234,8 @@
             transition: background-color 0.3s, box-shadow 0.3s;
         }
         @keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+        /* 置中放大版 API 延遲面板 */
         .ping-container {
             max-width: 500px;
             margin: 0 auto 1.8rem auto;
@@ -236,6 +265,8 @@
             color: #00FF66;
             text-shadow: 0 0 25px rgba(0, 255, 102, 0.6);
         }
+
+        /* 模組狀態柵格 */
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -262,6 +293,8 @@
             font-weight: bold;
             transition: all 0.3s;
         }
+
+        /* 授權方案樣式 */
         .pricing-controls {
             display: flex;
             justify-content: flex-end;
@@ -281,6 +314,7 @@
             transition: border-color 0.3s;
         }
         .pricing-dropdown:focus, .pricing-dropdown:hover { border-color: #00FF66; }
+        
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -327,6 +361,8 @@
         .price-btn:hover { background: rgba(0, 255, 102, 0.1); box-shadow: 0 0 15px rgba(0, 255, 102, 0.3); }
         .price-btn.solid { background: #00FF66; color: #0B192C; border: none; }
         .price-btn.solid:hover { background: #00cc52; box-shadow: 0 0 20px rgba(0, 255, 102, 0.5); }
+
+        /* 指令手風琴選單元件 */
         .accordion-item { margin-bottom: 1.2rem; width: 100%; }
         .system-header {
             width: 100%; padding: 1.1rem 2rem; font-size: 1.3rem; font-weight: bold;
@@ -343,6 +379,24 @@
         .system-header.active { border-color: #00F5FF; background-color: rgba(56, 189, 248, 0.15); box-shadow: 0 0 20px rgba(0, 245, 255, 0.4); }
         .system-header::after { content: '∨'; font-size: 1rem; transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
         .system-header.active::after { transform: rotate(180deg); }
+
+        /* 專門為進階版設計的手風琴標題（金色/綠色質感） */
+        .system-header.premium-header {
+            border-color: #00FF66;
+            color: #00FF66;
+            box-shadow: 0 0 12px rgba(0, 255, 102, 0.15);
+        }
+        .system-header.premium-header:hover {
+            background-color: rgba(0, 255, 102, 0.1);
+            border-color: #00FF66;
+            color: #00FF66;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+        .system-header.premium-header.active {
+            background-color: rgba(0, 255, 102, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
         .cmd-content {
             max-height: 0; opacity: 0; overflow: hidden; background: rgba(15, 23, 42, 0.6);
             margin-top: -20px; padding: 0 1.5rem; border-radius: 0 0 20px 20px;
@@ -350,12 +404,36 @@
             transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, padding 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
         }
         .cmd-content.active { max-height: 600px; opacity: 1; padding: 2.5rem 1.5rem 1.5rem; border-color: rgba(56, 189, 248, 0.3); }
+        
+        /* 進階指令展開框的綠色邊框 */
+        .cmd-content.premium-active {
+            border-color: rgba(0, 255, 10 green, 0.3) !important;
+        }
+
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 0.85rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
         th { color: #38BDF8; font-size: 1.1rem; }
+        .premium-th { color: #00FF66 !important; }
+        
         .cmd-code { background-color: #0F172A; padding: 0.3rem 0.6rem; border-radius: 6px; font-family: monospace; color: #00F5FF; font-weight: bold; border: 1px solid rgba(0, 245, 255, 0.3); }
+        .cmd-code.premium-code { color: #00FF66; border-color: rgba(0, 255, 102, 0.3); }
+        
+        /* 連結樣式設計 */
+        .cmd-link {
+            color: #00F5FF;
+            text-decoration: none;
+            border-bottom: 1px dashed #00F5FF;
+            font-weight: bold;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .cmd-link:hover {
+            color: #38BDF8;
+            border-bottom-color: #38BDF8;
+        }
+
         #cursor-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
         footer { text-align: center; padding: 1.5rem; background-color: #090D16; color: #64748B; font-size: 0.9rem; margin-top: 4rem; }
+
         @media (max-width: 768px) {
             .navbar-container { gap: 1.2rem; padding: 0.6rem 0.5rem; }
             .navbar-item { font-size: 0.95rem; }
@@ -365,6 +443,7 @@
     </style>
 </head>
 <body>
+
     <div id="error-overlay">
         <div class="error-box">
             <div class="error-title">⚠️ CONNECTION_RESET_BY_PEER</div>
@@ -377,7 +456,9 @@
             <p style="color: #64748B; font-size: 0.8rem;">Tang-Er Security Protection System v1.2</p>
         </div>
     </div>
+
     <canvas id="cursor-canvas"></canvas>
+
     <nav class="navbar">
         <div class="navbar-container">
             <a href="#system-status" class="navbar-item">功能模組</a>
@@ -387,12 +468,15 @@
             <a href="#about-tanger" class="navbar-item">開發團隊</a>
         </div>
     </nav>
+
     <header>
         <h1>🤖 糖兒機器人 Tang-Er</h1>
         <p>✨ 處理好伺服器大小事 ✨</p>
         <div class="version-tag">v0.0.00</div>
     </header>
+
     <div class="container">
+
         <div id="system-status" class="section anchor-target">
             <div class="status-header-area" id="status-header">
                 <h2 id="status-title">📊 API 系統狀態</h2>
@@ -401,12 +485,14 @@
                     <span id="overall-status-text">連線中...</span>
                 </div>
             </div>
+            
             <div class="ping-container">
                 <div class="stat-card-large">
                     <div class="stat-label">💻 當前 API 延遲</div>
                     <div id="api-ping" class="stat-value-large green">-- ms</div>
                 </div>
             </div>
+
             <div class="modules-grid">
                 <div class="module-item" id="mod-music">
                     <span class="module-name">🎵 音樂系統 (MUSIC)</span>
@@ -426,6 +512,7 @@
                 </div>
             </div>
         </div>
+
         <div id="pricing-section" class="section anchor-target">
             <h2>💎 所有方案</h2>
             <div class="pricing-controls">
@@ -436,6 +523,7 @@
                     <option value="yearly">按 1 年(最划算)付費</option>
                 </select>
             </div>
+
             <div class="pricing-grid">
                 <div class="price-card">
                     <h3>免費基礎版</h3>
@@ -446,15 +534,15 @@
                     <ul class="feature-list">
                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> x</li>
+ 
                     </ul>
                     <button class="price-btn">免費加入伺服器</button>
                 </div>
+
                 <div class="price-card premium">
                     <div class="badge-recommend">唯一付費方案</div>
                     <h3>進階版</h3>
@@ -476,13 +564,18 @@
                 </div>
             </div>
         </div>
+        
         <div id="about-tanger" class="section anchor-target">
             <h2>✨ 關於糖兒</h2>
             <p>xxxxx</p>
         </div>
+
         <div id="commands-list" class="section anchor-target">
             <h2>📜 系統指令介紹</h2>
-            <p>點擊下方系統按鈕展開指令詳情：</p>
+            
+            <div class="sub-section-title">🟢 基礎版指令介紹</div>
+            <p>點擊下方按鈕展開基礎版指令詳情：</p>
+            
             <div class="accordion-item">
                 <button class="system-header" onclick="toggleAccordion(this, 'music-table')"><span>🎵 音樂系統</span></button>
                 <div id="music-table" class="cmd-content">
@@ -498,13 +591,14 @@
                     </table>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <button class="system-header" onclick="toggleAccordion(this, 'protect-table')"><span>🛡️ 防護系統</span></button>
                 <div id="protect-table" class="cmd-content">
                     <table>
                         <thead><tr><th style="width: 40%;">指令</th><th style="width: 60%;">功能與使用說明</th></tr></thead>
                         <tbody>
-                            <tr><td><span class="cmd-code">/防護 防不雅字開關</span></td><td>開啟或關閉不雅字防護</td></tr>
+                            <tr><td><span class="cmd-code">/防護 防不雅字開關</span></td><td>防我設定的不雅字語，防那些字請<a href="請置換成您的不雅字連結" class="cmd-link" target="_blank">點連結</a></td></tr>
                             <tr><td><span class="cmd-code">/防護 防刷屏開關</span></td><td>開啟或關閉防刷屏功能</td></tr>
                             <tr><td><span class="cmd-code">/防護 防連結開關</span></td><td>開啟或關閉防連結功能</td></tr>
                             <tr><td><span class="cmd-code">/防護 移除白名單頻道</span></td><td>從白名單中拿掉</td></tr>
@@ -513,6 +607,7 @@
                     </table>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <button class="system-header" onclick="toggleAccordion(this, 'manage-table')"><span>⚙️ 管理系統</span></button>
                 <div id="manage-table" class="cmd-content">
@@ -529,6 +624,7 @@
                     </table>
                 </div>
             </div>
+
             <div class="accordion-item">
                 <button class="system-header" onclick="toggleAccordion(this, 'fun-table')"><span>🎉 趣味系統</span></button>
                 <div id="fun-table" class="cmd-content">
@@ -542,38 +638,93 @@
                     </table>
                 </div>
             </div>
+
+            <div class="sub-section-title" style="color: #00FF66; margin-top: 3.5rem;">👑 進階版指令介紹</div>
+            <p>點擊下方按鈕展開進階版專屬功能：</p>
+
+            <div class="accordion-item">
+                <button class="system-header premium-header" onclick="toggleAccordion(this, 'premium-music-table')"><span>✨ 進階語音與音質控制</span></button>
+                <div id="premium-music-table" class="cmd-content">
+                    <table>
+                        <thead><tr><th style="width: 40%;" class="premium-th">指令</th><th style="width: 60%;" class="premium-th">功能與使用說明</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="cmd-code premium-code">/進階 8D環繞音效</span></td><td>一鍵開啟 8D 環繞杜比音效，享受極致音質</td></tr>
+                            <tr><td><span class="cmd-code premium-code">/進階 低音增強</span></td><td>開啟超重低音 (Bass Boost)，讓派對更嗨</td></tr>
+                            <tr><td><span class="cmd-code premium-code">/進階 自訂等化器</span></td><td>提供多種預設 EQ 或由管理員自訂音頻輸出參數</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="system-header premium-header" onclick="toggleAccordion(this, 'premium-protect-table')"><span>🛡️ AI 進階安防與威脅防禦</span></button>
+                <div id="premium-protect-table" class="cmd-content">
+                    <table>
+                        <thead><tr><th style="width: 40%;" class="premium-th">指令</th><th style="width: 60%;" class="premium-th">功能與使用說明</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="cmd-code premium-code">/進階 AI智慧防洗板</span></td><td>利用動態語意評估，防止惡意洗板、洗頻或刷洗指令</td></tr>
+                            <tr><td><span class="cmd-code premium-code">/進階 圖形與釣魚驗證</span></td><td>新成員加入時強制觸發驗證碼，阻擋伺服器廣告機器人</td></tr>
+                            <tr><td><span class="cmd-code premium-code">/進階 敏感字智慧模糊偵測</span></td><td>防護更升級！自動偵測同音字、拼音、錯別字繞過之違規訊息</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="system-header premium-header" onclick="toggleAccordion(this, 'premium-custom-table')"><span>⚙️ 高度自定義設定</span></button>
+                <div id="premium-custom-table" class="cmd-content">
+                    <table>
+                        <thead><tr><th style="width: 40%;" class="premium-th">指令</th><th style="width: 60%;" class="premium-th">功能與使用說明</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="cmd-code premium-code">/進階 自訂歡迎訊息卡片</span></td><td>自訂極美精緻排版之新進成員歡迎卡片與背景圖</td></tr>
+                            <tr><td><span class="cmd-code premium-code">/進階 自動按鍵領身分組</span></td><td>設計專屬的按鈕，讓新加入的玩家一鍵獲取伺服器分組</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
+
     <footer>
         <p>&copy; 2026 糖兒機器人. 保留所有權利，機器人由fries所擁有。</p>
     </footer>
+
     <script>
+        // ====== 🔒 核心安全防護組合拳 ======
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12') { triggerCrash(); e.preventDefault(); return false; }
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) { triggerCrash(); e.preventDefault(); return false; }
             if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's')) { e.preventDefault(); return false; }
         });
+
         function triggerCrash() {
             document.getElementById('error-overlay').style.display = 'block';
             document.body.innerHTML = ""; 
             setInterval(function() { debugger; }, 50);
         }
+
         setInterval(function() {
             const startTime = performance.now();
             debugger; 
             const endTime = performance.now();
             if (endTime - startTime > 100) { triggerCrash(); }
         }, 500);
+
+        // ====== ⚙️ 價格下拉選單動態切換邏輯 ======
         function updatePremiumPrice() {
             const cycle = document.getElementById('billing-cycle').value;
             const priceEl = document.getElementById('premium-price');
             const unitEl = document.getElementById('premium-unit');
+
             if (cycle === 'monthly') { priceEl.innerText = '49'; unitEl.innerText = '元 / 月'; } 
             else if (cycle === 'quarterly') { priceEl.innerText = '135'; unitEl.innerText = '元 / 季'; } 
             else if (cycle === 'semi-annual') { priceEl.innerText = '240'; unitEl.innerText = '元 / 半年'; } 
             else if (cycle === 'yearly') { priceEl.innerText = '420'; unitEl.innerText = '元 / 年'; }
         }
+
+        // ====== 📜 手風琴選單邏輯 ======
         function toggleAccordion(header, contentId) {
             const content = document.getElementById(contentId);
             const isOpen = content.classList.contains('active');
@@ -581,27 +732,35 @@
             document.querySelectorAll('.system-header').forEach(el => el.classList.remove('active'));
             if (!isOpen) { content.classList.add('active'); header.classList.add('active'); }
         }
+
+        // ====== 🌐 動態真實 API 狀態調整處理機制 ======
         async function fetchRealApiStatus() {
             const apiUrl = 'https://tangerserver.nkhost.dev/api/status'; 
+
             try {
                 const startTime = performance.now();
                 const response = await fetch(apiUrl, { method: 'GET' });
+                
                 if (!response.ok) throw new Error('API 異常');
+                
                 const data = await response.json();
                 const endTime = performance.now();
                 const calculatedPing = Math.round(endTime - startTime);
+
                 const apiPing = document.getElementById('api-ping');
                 if (apiPing) {
                     apiPing.innerText = (data.ping || calculatedPing) + ' ms';
                     apiPing.style.color = '#00FF66';
                     apiPing.style.textShadow = '0 0 25px rgba(0, 255, 102, 0.6)';
                 }
+
                 const mainStatus = data.status; 
                 const headerArea = document.getElementById('status-header');
                 const titleText = document.getElementById('status-title');
                 const textContainer = document.getElementById('status-text-container');
                 const dot = document.getElementById('status-glow-dot');
                 const overallText = document.getElementById('overall-status-text');
+
                 if (mainStatus === 'maintenance') {
                     headerArea.style.borderColor = '#FFA500';
                     titleText.style.color = '#FFA500';
@@ -619,21 +778,26 @@
                     dot.style.backgroundColor = '#00FF66';
                     dot.style.boxShadow = '0 0 10px #00FF66';
                     overallText.innerText = '整體狀態：正常運行';
+
                     updateModuleUI('music', data.modules?.music || '運作中');
                     updateModuleUI('protect', data.modules?.protect || '監控中');
                     updateModuleUI('manage', data.modules?.manage || '在線');
                     updateModuleUI('fun', data.modules?.fun || '在線');
                 }
+
             } catch (error) {
                 console.error('API 讀取異常，啟動全紅停機防禦機制:', error);
                 setUiToOffline();
             }
         }
+
         function updateModuleUI(modId, status) {
             const itemEl = document.getElementById(`mod-${modId}`);
             const badgeEl = document.getElementById(`badge-${modId}`);
             if (!itemEl || !badgeEl) return;
+
             badgeEl.innerText = status;
+
             if (status === '運作中' || status === '在線' || status === '監控中') {
                 itemEl.style.borderLeftColor = '#00FF66';
                 badgeEl.style.color = '#00FF66';
@@ -651,6 +815,7 @@
                 badgeEl.style.borderColor = 'rgba(255, 51, 51, 0.3)';
             }
         }
+
         function setUiToOffline() {
             const apiPing = document.getElementById('api-ping');
             if (apiPing) {
@@ -658,11 +823,13 @@
                 apiPing.style.color = '#FF3333';
                 apiPing.style.textShadow = '0 0 25px rgba(255, 51, 51, 0.8)';
             }
+
             const headerArea = document.getElementById('status-header');
             const titleText = document.getElementById('status-title');
             const textContainer = document.getElementById('status-text-container');
             const dot = document.getElementById('status-glow-dot');
             const overallText = document.getElementById('overall-status-text');
+
             if (headerArea) headerArea.style.borderColor = '#FF3333';
             if (titleText) titleText.style.color = '#FF3333';
             if (textContainer) textContainer.style.color = '#FF3333';
@@ -671,6 +838,7 @@
                 dot.style.boxShadow = '0 0 15px #FF3333';
             }
             if (overallText) overallText.innerText = '整體狀態：伺服器中斷';
+
             ['music', 'protect', 'manage', 'fun'].forEach(id => {
                 const itemEl = document.getElementById(`mod-${id}`);
                 const badgeEl = document.getElementById(`badge-${id}`);
@@ -683,8 +851,11 @@
                 }
             });
         }
+
         fetchRealApiStatus();
         setInterval(fetchRealApiStatus, 5000);
+
+        // ====== 🌌 滑鼠光標純藍色系粒子特效 ======
         const canvas = document.getElementById('cursor-canvas');
         const ctx = canvas.getContext('2d');
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
