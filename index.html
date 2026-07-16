@@ -535,6 +535,7 @@
                         <li class="feature-item"><span class="feature-icon">✓</span> 基礎防炸規則</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> 台灣地震速報 (≥4級)</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> 基礎工具與客服單</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 免費抽獎系統</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> 面板唯讀權限</li>
                     </ul>
                     <button class="price-btn">免費加入伺服器</button>
@@ -551,7 +552,7 @@
                         <li class="feature-item"><span class="feature-icon">✓</span> 基礎版全部功能</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> 進階自訂防炸規則</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> 台日全球地震推送自訂</li>
-                        <li class="feature-item"><span class="feature-icon">✓</span> 解鎖音樂與抽獎系統</li>
+                        <li class="feature-item"><span class="feature-icon">✓</span> 解鎖音樂系統與管理</li>
                         <li class="feature-item"><span class="feature-icon">✓</span> 面板完整管理權限</li>
                         <li class="feature-item"><span class="feature-icon">💎</span> <b>進階廣播發送</b> (私訊發送公告)</li>
                     </ul>
@@ -621,7 +622,20 @@
             </div>
 
             <div class="accordion-item">
-                <button class="system-header" onclick="toggleAccordion(this, 'fun-table')"><span>🎉 趣味系統</span></button>
+                <button class="system-header" onclick="toggleAccordion(this, 'draw-table')"><span>🎉 抽獎系統</span></button>
+                <div id="draw-table" class="cmd-content">
+                    <table>
+                        <thead><tr><th style="width: 40%;">指令</th><th style="width: 60%;">功能與使用說明</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="cmd-code">/抽獎 建立抽獎</span></td><td>建立一個自定義時間、獎項與人數的抽獎活動</td></tr>
+                            <tr><td><span class="cmd-code">/抽獎 重新抽獎</span></td><td>重新選取該抽獎活動的得獎者 (Reroll)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="system-header" onclick="toggleAccordion(this, 'fun-table')"><span>💬 趣味系統</span></button>
                 <div id="fun-table" class="cmd-content">
                     <table>
                         <thead><tr><th style="width: 40%;">指令</th><th style="width: 60%;">功能與使用說明</th></tr></thead>
